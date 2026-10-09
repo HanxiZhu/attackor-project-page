@@ -51,8 +51,11 @@
 
 .training-example + .training-example{margin-top:20px}
 
-/* Keep the native model selector tall enough for its text; Clarity fixes select height at 30px. */
-#results #model-select{display:block!important;width:min(100%,320px)!important;min-width:0;height:42px!important;line-height:normal!important;padding:0 34px 0 12px!important;margin:0!important;box-sizing:border-box;appearance:auto}
+/* Replace the template's 30px native select rendering with a stable control. */
+.model-select-wrap{position:relative;width:min(100%,340px)}
+.model-select-wrap::after{content:"";position:absolute;right:17px;top:50%;width:7px;height:7px;border-right:1.5px solid #35515d;border-bottom:1.5px solid #35515d;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+#results #model-select{display:block!important;width:100%!important;height:46px!important;min-height:46px!important;margin:0!important;padding:0 42px 0 14px!important;border:1px solid #b7c6ca!important;border-radius:3px!important;background:#fff!important;color:var(--ink)!important;font:15px/normal Arial,Helvetica,sans-serif!important;box-sizing:border-box!important;appearance:none!important;-webkit-appearance:none!important;text-indent:0!important;text-transform:none!important}
+#results #model-select:focus-visible{outline:2px solid var(--accent)!important;outline-offset:2px}
 
 /* Paper tables in the defense results. */
 .training-result{display:block;padding-bottom:19px}
@@ -101,3 +104,16 @@
 @media(max-width:720px){.sitebar .brand{font-size:22px!important}}
 
 @media(max-width:720px){.hero{padding-bottom:18px!important}}
+
+/* Keep the two hero columns comparable and cap Figure 1 on wide screens. */
+@media(min-width:1101px){.hero{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,64px);padding-inline:clamp(24px,5vw,80px)!important}.hero-inner,.hero-figure{width:100%;max-width:680px}.hero-figure{justify-self:end}}
+@media(min-width:1600px){.hero{grid-template-columns:680px 680px;justify-content:center}}
+
+/* The example keeps its table and formulation in equal columns. */
+.toy-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,48px);max-width:1100px}
+@media(max-width:720px){.toy-example{overflow-x:auto}.toy-grid{grid-template-columns:repeat(2,minmax(280px,1fr));width:max-content;min-width:100%;gap:20px}}
+
+.finding-table-wrap + .finding-table-wrap{margin-top:22px}
+.findings article,.finding-table-wrap{min-width:0}
+@media(max-width:720px){.findings{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1799px){.findings{grid-template-columns:minmax(0,1fr)}}
